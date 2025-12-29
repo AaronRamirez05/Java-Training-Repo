@@ -1,0 +1,27 @@
+pom.xml - "build brain" defines (Java version, Dependencies, and Plugins)
+Application.java - known as entry point and the component scan root (All packages should live under this package)
+controller/ - HTTP boundary which handles (Requests, Responses, and Validation), doesn't talk to database directly 
+service/ - business logic which handles (Rules, Decisions, Transactions)
+repository/ - database access which handles (SQL,Fetching/saving data)
+domain/-the data model which contains (JPA entities and Enums)
+dto/ - API contracts which is used for Request and Response payloads (NEVER EXPOSE ENTITIES DIRECTLY IN APIs)
+security/ - which contains (Security config, JWT filters, and Role handling)
+config/ - which contains (Beans and App configuration)
+exception/ - which contains (custom exceptions and global error handlers)
+util/ - which contains (small helper classes)
+resources/ folder - which contains application.yml(Config, Profiles[dev/test/prod]),
+		    db/migration/ (Flyway SQL scripts and Versioned schema changes)
+test/ - mirrors main/ files (Same package structure = easier testing)
+
+Important rules to memorize 
+*Controllers = HTTP only
+*Services = logic + transactions
+*Repositories = data access
+*DTOs does not equal to entities
+*Config does not equal to Logic
+*Security is explicit 
+*Everything lives under Application package
+		    
+@RestController - is an annotation that marks a Java class as a REST API controller. Here is what it does:
+1.
+2.
