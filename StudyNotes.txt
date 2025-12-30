@@ -1,3 +1,5 @@
+Day 1
+
 pom.xml - "build brain" defines (Java version, Dependencies, and Plugins)
 Application.java - known as entry point and the component scan root (All packages should live under this package)
 controller/ - HTTP boundary which handles (Requests, Responses, and Validation), doesn't talk to database directly 
@@ -23,5 +25,60 @@ Important rules to memorize
 *Everything lives under Application package
 		    
 @RestController - is an annotation that marks a Java class as a REST API controller. Here is what it does:
-1.
-2.
+1.Identifies the class as a controller
+2.Automatically serializes return values to JSON/XML
+
+DTOs define API boundaries
+
+
+Day 2
+
+Controller maps HTTP -> DTO -> service -> DTO -> response
+
+Why an HTTP folder?
+-Keeps manual API tests separate from code
+-Mirrors what real teams do
+-Easy to version control
+-clean root directory
+
+src/main -> production code
+src/tests -> automated tests
+http/ -> manual API testing
+README.md -> humans
+NOTES.md -> learning + reference
+
+REST controller basics
+-@RestController maps HTTP Requests to Java methods
+-@RequestMapping("/api/v1") defines a base path
+-@GetMapping handles GET requests
+-@PostMapping handles POST requests
+
+DTOs (Data Transfer Object)
+-DTOs define API contracts
+-Separate request DTOs from response DTOs
+-Never expose entities directly
+-DTO field names must match JSON keys
+
+Request body handling
+-@RequestBody binds JSON to a java object
+-Content-Type: application/json is required
+-Missing or malformed JSON results in 400 Bad Request
+
+Common HTTP Status meanings
+-200 OK - success
+-400 Bad Request - invalid input
+-404 Not Found - path or method mismatch
+-415 Unsupported media type - wrong Content-Type
+
+Manual API testing tools
+Postman
+-Best for quick manual testing
+-Requires correct method, URL, headers, and body 
+-Hidden characters (e.g. %0A) can cause 404 errors
+VS Code REST Client
+-.http files stored in project root (http/ folder)
+-Requests executed with "Send Request"
+-Used as manual smoke tests
+-Not automated tests
+REST Client file structure
+http -> api.http
