@@ -18,11 +18,6 @@ public class HelloController {
     public String healthz() {
         return "ok";
     }
-
-    @GetMapping("/api/v1/ping")
-    public PingResponse ping() {
-        return new PingResponse("ok","asset-service");
-    }
     
     
     
