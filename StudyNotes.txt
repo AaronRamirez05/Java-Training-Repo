@@ -82,3 +82,57 @@ VS Code REST Client
 -Not automated tests
 REST Client file structure
 http -> api.http
+
+Day 3 notes
+
+Validation basics
+-@Valid
+-@NotBlank
+-@Size
+-@NotNull
+
+Error handling
+-Why Spring throws validation exceptions
+-Why we centralize error handling with @ControllerAdvice
+Validation happens at the boundary(controller), not in the service
+
+@Valid tells Spring to enforce the annotations 
+
+Input Validation (Spring Boot)
+
+Why validation exists 
+-APIs must reject bad input early
+-Validation happens at the controller boundary
+-Prevents bad data from entering business logic
+
+Validation annotations
+Used on DTO fields
+@NotBlank // string must not be null or empty
+@NotNull // value must not be null
+@Size // length constraints
+
+Enabling validation - Validation runs only when (@Valid @RequestBody Echo Request request)
+-@Valid -> tells Spring to enforce annotations
+-Without it, validation annotations are ignored
+
+Validation failure behavior 
+When validation fails:
+-Spring throws MethodArgumentNotValidException
+-Default error response is verbose and inconsistent
+-We override it using @ControllerAdvice
+
+Global Error Handling
+@ControllerAdvice
+-Applies to all controllers
+-Centralizes exception handling
+-Prevents duplicated try/catch blocks
+
+@ExceptionHandler(MethodArgumentNotValidException.class)
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public ErrorResponse handleValidation(MethodArgumentNotValidException ex) {
+What this means
+-This method runs only when validation fails
+-It catches MethodArgumentNotValidException
+-It always returns HTTP 400 Bad Request
+
+
