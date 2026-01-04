@@ -1,6 +1,8 @@
 ### Ping
 GET http://localhost:8080/api/v1/ping
 
+###
+
 ### Echo
 POST http://localhost:8080/api/v1/echo
 Content-Type: application/json
@@ -8,6 +10,18 @@ Content-Type: application/json
 {
   "message": "Hello"
 }
+
+###
+
+### Echo - FAIL: empty message (expect 400)
+POST http://localhost:8080/api/v1/echo
+Content-Type: application/json
+
+{
+  "message": ""
+}
+
+###
 
 ### Work Order - valid
 POST http://localhost:8080/api/v1/work-orders
