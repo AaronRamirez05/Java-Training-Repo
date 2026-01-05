@@ -239,3 +239,35 @@ HTTP Status Code Understanding
 -Learned to distinguish backend bugs from tooling issues
 
 
+--------------------------------------------Day 4 ---------------------------------------------
+Key architecture principle (memorize this):
+Controllers handle HTTP.
+Services handle business logic.
+
+Controllers should:
+-accept requests
+-validate input
+-delegate work
+
+Services should:
+-enforce rules
+-make decisions
+-manage state
+
+Domain Model
+Purpose-Encapsulate business logic and data integerity
+Behavior-Contains business methods and rules
+Layers Used-Business, Service, Domain
+Complexity- Can be complex with nested objects and relationships
+Driven By- Business requirements and domain experts
+
+Data Transfer Object(DTO)
+Purpose- Transfer data efficiently between layers/processes
+Behavior- Contains only data and accessors("dumb" data bag)
+Layers- Presentation, Application, API, Data Source
+Complexity- Generally has a simpler, often flatter structure for serialization
+Driven By- Technical communication needs and interface contracts
+
+Why interface?
+-Makes testing easier 
+-Allows future implementations
