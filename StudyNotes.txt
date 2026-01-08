@@ -271,3 +271,5 @@ Driven By- Technical communication needs and interface contracts
 Why interface?
 -Makes testing easier 
 -Allows future implementations
+
+Import the interface, NOT THE IMPLEMENTATION
