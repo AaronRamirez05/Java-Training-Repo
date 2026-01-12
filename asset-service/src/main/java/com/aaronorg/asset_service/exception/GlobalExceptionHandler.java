@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import java.lang.IllegalAccessException;
 
 import java.time.Instant;
 import java.util.List;
@@ -28,6 +29,17 @@ public class GlobalExceptionHandler {
             400,
             "Bad Request",
             messages
+        );
+    }
+
+    @ExceptionHandler(IllegalAccessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleIllegalArgument(IllegalAccessException ex){
+        return new ErrorResponse(
+            Instant.now(),
+            400,
+            "Bad Request",
+            List.of(ex.getMessage())
         );
     }
 }
